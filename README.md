@@ -2,41 +2,34 @@
 
 ## introdução 
 
-- item
-- item
-- item
-
-1. valor
-2. valor
-3. valor
+- Documento (abstrato)
+- Contrato (clone)
+- Relatorio (clone)
 
 ```mermaid
 ---
-title: Animal example
+title: Sistema de Documentos
 ---
 classDiagram
-    note "From Duck till Zebra"
-    Animal <|-- Duck
-    note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-        +String beakColor
-        +swim()
-        +quack()
+    Documento <|-- Relatorio
+    Documento <|-- Contrato
+    class Documento {
+        +String titulo
+        +String conteudo
+        +clone() Documento
+        +exibirDetalhes() void
     }
-    class Fish{
-        -int sizeInFeet
-        -canEat()
+    class Relatorio {
+        +String autor
+        +exibirDetalhes() void
     }
-    class Zebra{
-        +bool is_wild
-        +run()
+    class Contrato {
+        +String nomeCliente
+        +exibirDetalhes() void
     }
+    note for Relatorio "Relatórios personalizados como Relatório Financeiro"
+    note for Contrato "Contratos específicos como Compra e Venda"
+
 
 ```
 
