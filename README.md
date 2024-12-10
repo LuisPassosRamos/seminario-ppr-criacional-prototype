@@ -19,16 +19,18 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
 
 ## Participantes do Builder: references GOF
 
-• **Builder(TextConverter)**
+- **Builder(TextConverter)**
     – especifica uma interface abstrata para criação de partes de um objetoproduto.
     
-• **ConcreteBuilder** (ASCIIConverter, TeXConverter, TextWidgetConverter)
+- **ConcreteBuilder** (ASCIIConverter, TeXConverter, TextWidgetConverter)
     – constrói e monta partes do produto pela implementação da interface de Builder;
     – define e mantém a representação que cria;
     – fornece uma interface para recuperação do produto (por exemplo, GetASCIIText, GetTextWidget).
-• **Director (RTFReader)**
+    
+- **Director (RTFReader)**
     – constrói um objeto usando a interface de Builder.
-• **Product (ASCIIText, TeXText, TextWidget)**.
+    
+- **Product (ASCIIText, TeXText, TextWidget)**.
     – representa o objeto complexo em construção. ConcreteBuilder constrói a representação interna do produto e define o processo pelo qual ele é montado;
     – inclui classes que definem as partes constituintes, inclusive as interfaces para a montagem das partes no resultado final.
 
