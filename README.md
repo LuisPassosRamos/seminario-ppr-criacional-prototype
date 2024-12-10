@@ -7,7 +7,6 @@ mesmo processo de construção possa criar diferentes representações.
 
 Imagine que você está construindo casas. Cada casa pode ter diferentes características, como materiais, design, número de cômodos, ou até mesmo o estilo arquitetônico (moderno, clássico, minimalista).
 
-## Exemplo incorreto:
 ```mermaid
 classDiagram
     class GerenteDeObras {
