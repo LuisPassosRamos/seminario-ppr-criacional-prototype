@@ -9,6 +9,26 @@ Imagine que você está construindo casas. Cada casa pode ter diferentes caracte
 
 Em vez de construir cada casa do zero manualmente e misturar todos os detalhes da construção, você contrata um arquiteto (o Builder). Esse arquiteto é especializado em planejar e organizar os passos para criar casas específicas de acordo com as suas necessidades. Um gerente de obra (o Director) coordena o trabalho do arquiteto, garantindo que a construção siga o plano correto.
 
+## Exemplo incorreto:
+```mermaid
+classDiagram
+    class GerenteDeObras {
+        +construirCasaModerna(): CasaModerna
+        +construirCasaClassica(): CasaClassica
+    }
+    class Casa {
+    }
+    class CasaModerna {
+    }
+    class CasaClassica {
+    }
+
+    GerenteDeObras --> CasaModerna : cria diretamente
+    GerenteDeObras --> CasaClassica : cria diretamente
+```
+
+
+
 Se você quiser construir uma casa moderna, contrata um arquiteto especializado em design moderno. Se preferir uma casa clássica, escolhe outro arquiteto. O gerente de obras é sempre o mesmo, mas ele coordena o trabalho com base no arquiteto selecionado.
 
 Aplicando ao software:
@@ -16,6 +36,8 @@ O Builder é útil quando você precisa criar diferentes representações ou ver
 
 Reaproveite a lógica do "gerente" (o Director) para criar objetos diferentes.
 Simplifique a manutenção e a adição de novos tipos de representações sem modificar o processo principal.
+
+
 
 ## Participantes do Builder: references GOF
 
