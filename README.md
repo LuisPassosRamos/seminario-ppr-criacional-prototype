@@ -94,7 +94,127 @@ classDiagram
     Casa <|-- CasaClassica
     Casa <|-- CasaMinimalista
 ```
+### Exemplo:
 
+```java
+// Produto: Casa
+class Casa {
+    private String fundacao;
+    private String paredes;
+    private String telhado;
+
+    public void setFundacao(String fundacao) {
+        this.fundacao = fundacao;
+    }
+
+    public void setParedes(String paredes) {
+        this.paredes = paredes;
+    }
+
+    public void setTelhado(String telhado) {
+        this.telhado = telhado;
+    }
+
+    @Override
+    public String toString() {
+        return "Casa com fundação: " + fundacao + ", paredes: " + paredes + ", telhado: " + telhado;
+    }
+}
+
+// Interface Builder
+abstract class ConstrutorCasa {
+    protected Casa casa;
+
+    public void criarNovaCasa() {
+        casa = new Casa();
+    }
+
+    public Casa getCasa() {
+        return casa;
+    }
+
+    public abstract void construirFundacao();
+    public abstract void construirParedes();
+    public abstract void construirTelhado();
+}
+
+// ConcreteBuilder: ConstrutorCasaModerna
+class ConstrutorCasaModerna extends ConstrutorCasa {
+
+    @Override
+    public void construirFundacao() {
+        casa.setFundacao("Fundação de concreto reforçado");
+    }
+
+    @Override
+    public void construirParedes() {
+        casa.setParedes("Paredes de vidro e aço");
+    }
+
+    @Override
+    public void construirTelhado() {
+        casa.setTelhado("Telhado plano com painéis solares");
+    }
+}
+
+// ConcreteBuilder: ConstrutorCasaClassica
+class ConstrutorCasaClassica extends ConstrutorCasa {
+
+    @Override
+    public void construirFundacao() {
+        casa.setFundacao("Fundação de concreto tradicional");
+    }
+
+    @Override
+    public void construirParedes() {
+        casa.setParedes("Paredes de tijolo");
+    }
+
+    @Override
+    public void construirTelhado() {
+        casa.setTelhado("Telhado inclinado de telhas cerâmicas");
+    }
+}
+
+// Diretor
+class Diretor {
+    private ConstrutorCasa construtor;
+
+    public void setConstrutor(ConstrutorCasa construtor) {
+        this.construtor = construtor;
+    }
+
+    public void construirCasa() {
+        construtor.criarNovaCasa();
+        construtor.construirFundacao();
+        construtor.construirParedes();
+        construtor.construirTelhado();
+    }
+
+    public Casa getCasa() {
+        return construtor.getCasa();
+    }
+}
+
+// Teste
+public class BuilderExample {
+    public static void main(String[] args) {
+        Diretor diretor = new Diretor();
+
+        // Construir uma casa moderna
+        ConstrutorCasa construtorModerno = new ConstrutorCasaModerna();
+        diretor.setConstrutor(construtorModerno);
+        diretor.construirCasa();
+        System.out.println(diretor.getCasa());
+
+        // Construir uma casa clássica
+        ConstrutorCasa construtorClassico = new ConstrutorCasaClassica();
+        diretor.setConstrutor(construtorClassico);
+        diretor.construirCasa();
+        System.out.println(diretor.getCasa());
+    }
+}
+```
 [Mermaid Class Diagram.html](https://mermaid.js.org/syntax/classDiagram.html)
 
 [Markdown](https://docs.github.com/pt/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
