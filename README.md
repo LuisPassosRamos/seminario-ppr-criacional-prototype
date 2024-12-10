@@ -38,7 +38,11 @@ O Builder é útil quando você precisa criar diferentes representações ou ver
 Reaproveite a lógica do "gerente" (o Director) para criar objetos diferentes.
 Simplifique a manutenção e a adição de novos tipos de representações sem modificar o processo principal.
 
+## Aplicabilidade
 
+- Use o padrão Builder quando:
+    - " o algoritmo para criação de um objeto complexo deve ser independente das partes que compõem o objeto e de como elas são montadas."
+    - " o processo de construção deve permitir diferentes representações para o objeto que é construído."
 
 ## Participantes do Builder: references GOF
 
