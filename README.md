@@ -73,9 +73,9 @@ Prototype tem muitas das mesmas consequências que o Abstract Factory e Builder:
 -Pode ser um desafio implementar de maneira correta o padrão prototype, principalmente para implementar a operação clone, utilizar um gerenciador de prototipos
 -Processo de clonagem
 O processo de clonagem de um objeto pode ser feito usando duas abordagens:
-1.Shallow Copy (ou cópia superficial): 
+1. Shallow Copy (ou cópia superficial): 
 Copia os valores primitivos e as referências dos objetos, mas não os objetos em si. As referências no novo objeto apontam para os mesmos objetos que as do original, ou seja, o objeto pai é clonado, mas seus filhos são compartilhados entre os objetos.
-2.Deep Copy (ou cópia profunda):
+2. Deep Copy (ou cópia profunda):
 Copia o objeto e todos os objetos aos quais ele se refere, criando novas instâncias para todos os elementos. O objeto pai e todos os objetos contidos nele são clonados, garantindo que não haja referências compartilhadas.
 ## Exemplo de código 
 
