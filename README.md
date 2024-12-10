@@ -97,7 +97,7 @@ classDiagram
 ### Exemplo:
 
 ```java
-// Produto: Casa
+
 class Casa {
     private String fundacao;
     private String paredes;
@@ -196,7 +196,6 @@ class Diretor {
     }
 }
 
-// Teste
 public class BuilderExample {
     public static void main(String[] args) {
         Diretor diretor = new Diretor();
