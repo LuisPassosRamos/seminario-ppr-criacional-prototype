@@ -33,6 +33,9 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
 - **Product (ASCIIText, TeXText, TextWidget)**.
     -  representa o objeto complexo em construção. ConcreteBuilder constrói a representação interna do produto e define o processo pelo qual ele é montado;
     -  inclui classes que definem as partes constituintes, inclusive as interfaces para a montagem das partes no resultado final.
+      
+## Estrutura
+![image](https://github.com/user-attachments/assets/61d9ebe7-e9a8-4beb-845a-50c1f66427c7)
 
 ## Participantes da motivação:
 
@@ -55,6 +58,8 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
   - Representa o objeto final criado.  
   - É o resultado do trabalho coordenado pelo Director e definido pelo ConcreteBuilder.  
   - **Exemplo**: A casa moderna com janelas amplas e linhas retas, ou a casa clássica com ornamentos e telhado inclinado.
+
+## Estrutura:
 
 ```mermaid
 ---
