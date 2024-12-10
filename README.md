@@ -54,6 +54,13 @@ classDiagram
 ## Consequências
 Prototype tem muitas das mesmas consequências que o Abstract Factory e Builder:
 - Oculta as classes de produtos concretos do cliente, reduzindo a quantidade de informações que ele precisa conhecer, permitindo que o cliente crie novos objetos a partir de protótipos existentes, sem precisar entender ou interagir diretamente com o código das classes concretas.
+Benefícios adicionais do Prototype:
+1.
+2.
+3.
+4.
+5.
+
 
 ## Implementação 
 
