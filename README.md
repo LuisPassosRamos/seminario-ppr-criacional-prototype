@@ -62,29 +62,43 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
 ## Estrutura:
 
 ```mermaid
----
+
 classDiagram
-    class Diretor {
-        +construir(builder: Construtor)
+    class GerenteDeObras {
+        +construir(builder: Arquiteto)
     }
-    class Construtor {
+    class Arquiteto {
         <<interface>>
         +construirFundacao()
         +construirParedes()
         +construirTelhado()
         +obterResultado(): Casa
     }
-    class ConstrutorCasaModerna {
+    class ArquitetoCasaModerna {
         +construirFundacao()
         +construirParedes()
         +construirTelhado()
         +obterResultado(): CasaModerna
     }
+    class ArquitetoCasaClassica {
+        +construirFundacao()
+        +construirParedes()
+        +construirTelhado()
+        +obterResultado(): CasaClassica
+    }
     class Casa {
     }
-    Diretor o-- Construtor : builder
-    Construtor <|-- ConstrutorCasaModerna
-    ConstrutorCasaModerna --> Casa
+    class CasaModerna {
+    }
+    class CasaClassica {
+    }
+
+    GerenteDeObras o-- Arquiteto : builder
+    Arquiteto <|-- ArquitetoCasaModerna
+    Arquiteto <|-- ArquitetoCasaClassica
+    ArquitetoCasaModerna --> CasaModerna
+    ArquitetoCasaClassica --> CasaClassica
+
 
 ```
 ### Exemplo:
