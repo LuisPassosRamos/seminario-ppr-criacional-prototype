@@ -1,6 +1,9 @@
-# seminario-1
+# Builder
 
-## introdução 
+## Intenção
+Separar a construção de um objeto complexo da sua representação de modo que o
+mesmo processo de construção possa criar diferentes representações.
+## Motivação 
 
 - item
 - item
