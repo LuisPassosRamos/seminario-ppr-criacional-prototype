@@ -7,8 +7,6 @@ mesmo processo de construção possa criar diferentes representações.
 
 Imagine que você está construindo casas. Cada casa pode ter diferentes características, como materiais, design, número de cômodos, ou até mesmo o estilo arquitetônico (moderno, clássico, minimalista).
 
-Em vez de construir cada casa do zero manualmente e misturar todos os detalhes da construção, você contrata um arquiteto (o Builder). Esse arquiteto é especializado em planejar e organizar os passos para criar casas específicas de acordo com as suas necessidades. Um gerente de obra (o Director) coordena o trabalho do arquiteto, garantindo que a construção siga o plano correto.
-
 ## Exemplo incorreto:
 ```mermaid
 classDiagram
@@ -26,6 +24,10 @@ classDiagram
     GerenteDeObras --> CasaModerna : cria diretamente
     GerenteDeObras --> CasaClassica : cria diretamente
 ```
+
+
+
+Em vez de construir cada casa do zero manualmente e misturar todos os detalhes da construção, você contrata um arquiteto (o Builder). Esse arquiteto é especializado em planejar e organizar os passos para criar casas específicas de acordo com as suas necessidades. Um gerente de obra (o Director) coordena o trabalho do arquiteto, garantindo que a construção siga o plano correto.
 
 
 
