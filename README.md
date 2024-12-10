@@ -17,27 +17,43 @@ O Builder é útil quando você precisa criar diferentes representações ou ver
 Reaproveite a lógica do "gerente" (o Director) para criar objetos diferentes.
 Simplifique a manutenção e a adição de novos tipos de representações sem modificar o processo principal.
 
-## Participantes
-Builder (Arquiteto)
+## Participantes do Builder: references GOF
 
-Especifica uma interface abstrata para projetar e montar as partes de uma casa (ou produto).
-Exemplo: Planeja os cômodos, o telhado, as portas e outros detalhes estruturais.
-ConcreteBuilder (Arquiteto de Casa Moderna, Arquiteto de Casa Clássica)
+• **Builder(TextConverter)**
+    – especifica uma interface abstrata para criação de partes de um objetoproduto.
+    
+• **ConcreteBuilder** (ASCIIConverter, TeXConverter, TextWidgetConverter)
+    – constrói e monta partes do produto pela implementação da interface de Builder;
+    – define e mantém a representação que cria;
+    – fornece uma interface para recuperação do produto (por exemplo, GetASCIIText, GetTextWidget).
+• **Director (RTFReader)**
+    – constrói um objeto usando a interface de Builder.
+• **Product (ASCIIText, TeXText, TextWidget)**.
+    – representa o objeto complexo em construção. ConcreteBuilder constrói a representação interna do produto e define o processo pelo qual ele é montado;
+    – inclui classes que definem as partes constituintes, inclusive as interfaces para a montagem das partes no resultado final.
 
-Implementa a interface do Builder para criar partes específicas da casa.
-Mantém os detalhes e o design específico da casa sendo construída.
-Exemplo: Um arquiteto especializado em casas modernas vai criar designs com janelas amplas e linhas retas, enquanto o de casas clássicas prioriza ornamentos e telhados inclinados.
-Fornece o método para recuperar a casa pronta (por exemplo, GetModernHouse() ou GetClassicHouse()).
-Director (Gerente de Obras)
+## Participantes da motivação:
 
-Coordena o processo de construção seguindo um plano pré-definido.
-Não se preocupa com os detalhes de cada tipo de casa, apenas segue o plano do arquiteto escolhido.
-Exemplo: O gerente supervisiona os trabalhadores para garantir que as casas modernas ou clássicas sejam construídas corretamente.
-Product (Casa)
+- **Builder (Arquiteto)**  
+  - Especifica uma interface abstrata para projetar e montar as partes de uma casa (ou produto).  
+  - **Exemplo**: Planeja os cômodos, o telhado, as portas e outros detalhes estruturais.
 
-Representa o objeto final criado.
-É o resultado do trabalho coordenado pelo Director e definido pelo ConcreteBuilder.
-Exemplo: A casa moderna com janelas amplas e linhas retas, ou a casa clássica com ornamentos e telhado inclinado.
+- **ConcreteBuilder (Arquiteto de Casa Moderna, Arquiteto de Casa Clássica)**  
+  - Implementa a interface do Builder para criar partes específicas da casa.  
+  - Define e mantém os detalhes e o design específico da casa sendo construída.  
+  - Fornece o método para recuperar a casa pronta (por exemplo, `GetModernHouse()` ou `GetClassicHouse()`).  
+  - **Exemplo**: Um arquiteto especializado em casas modernas cria designs com janelas amplas e linhas retas, enquanto o de casas clássicas prioriza ornamentos e telhados inclinados.
+
+- **Director (Gerente de Obras)**  
+  - Coordena o processo de construção seguindo um plano pré-definido.  
+  - Não se preocupa com os detalhes de cada tipo de casa, apenas segue o plano do arquiteto escolhido.  
+  - **Exemplo**: O gerente supervisiona os trabalhadores para garantir que as casas modernas ou clássicas sejam construídas corretamente.
+
+- **Product (Casa)**  
+  - Representa o objeto final criado.  
+  - É o resultado do trabalho coordenado pelo Director e definido pelo ConcreteBuilder.  
+  - **Exemplo**: A casa moderna com janelas amplas e linhas retas, ou a casa clássica com ornamentos e telhado inclinado.
+
 ```mermaid
 ---
 title: Padrão Builder - Construção de Casas
