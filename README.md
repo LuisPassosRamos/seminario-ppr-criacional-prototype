@@ -64,7 +64,6 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
 ```mermaid
 ---
 title: Padrão Builder - Construção de Casas
----
 classDiagram
     class Diretor {
         +construir(builder: Construtor)
@@ -76,46 +75,18 @@ classDiagram
         +construirTelhado()
         +obterResultado(): Casa
     }
-    class ConstrutorConcreto {
-        <<abstract>>
-        +obterResultado(): Casa
-    }
     class ConstrutorCasaModerna {
         +construirFundacao()
         +construirParedes()
         +construirTelhado()
         +obterResultado(): CasaModerna
     }
-    class ConstrutorCasaClassica {
-        +construirFundacao()
-        +construirParedes()
-        +construirTelhado()
-        +obterResultado(): CasaClassica
-    }
-    class ConstrutorCasaMinimalista {
-        +construirFundacao()
-        +construirParedes()
-        +construirTelhado()
-        +obterResultado(): CasaMinimalista
-    }
     class Casa {
-        <<abstract>>
     }
-    class CasaModerna {
-    }
-    class CasaClassica {
-    }
-    class CasaMinimalista {
-    }
+    Diretor o-- Construtor : builder
+    Construtor <|-- ConstrutorCasaModerna
+    ConstrutorCasaModerna --> Casa
 
-    Diretor --> Construtor : utiliza
-    Construtor <|-- ConstrutorConcreto
-    ConstrutorConcreto <|-- ConstrutorCasaModerna
-    ConstrutorConcreto <|-- ConstrutorCasaClassica
-    ConstrutorConcreto <|-- ConstrutorCasaMinimalista
-    Casa <|-- CasaModerna
-    Casa <|-- CasaClassica
-    Casa <|-- CasaMinimalista
 ```
 ### Exemplo:
 
