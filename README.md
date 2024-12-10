@@ -40,32 +40,59 @@ Representa o objeto final criado.
 Exemplo: A casa moderna com janelas amplas e linhas retas, ou a casa clássica com ornamentos e telhado inclinado.
 ```mermaid
 ---
-title: Animal example
+title: Padrão Builder - Construção de Casas
 ---
 classDiagram
-    note "From Duck till Zebra"
-    Animal <|-- Duck
-    note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-        +String beakColor
-        +swim()
-        +quack()
+    class Diretor {
+        +construir(builder: Construtor)
     }
-    class Fish{
-        -int sizeInFeet
-        -canEat()
+    class Construtor {
+        <<interface>>
+        +construirFundacao()
+        +construirParedes()
+        +construirTelhado()
+        +obterResultado(): Casa
     }
-    class Zebra{
-        +bool is_wild
-        +run()
+    class ConstrutorConcreto {
+        <<abstract>>
+        +obterResultado(): Casa
+    }
+    class ConstrutorCasaModerna {
+        +construirFundacao()
+        +construirParedes()
+        +construirTelhado()
+        +obterResultado(): CasaModerna
+    }
+    class ConstrutorCasaClassica {
+        +construirFundacao()
+        +construirParedes()
+        +construirTelhado()
+        +obterResultado(): CasaClassica
+    }
+    class ConstrutorCasaMinimalista {
+        +construirFundacao()
+        +construirParedes()
+        +construirTelhado()
+        +obterResultado(): CasaMinimalista
+    }
+    class Casa {
+        <<abstract>>
+    }
+    class CasaModerna {
+    }
+    class CasaClassica {
+    }
+    class CasaMinimalista {
     }
 
+    Diretor --> Construtor : utiliza
+    Construtor <|-- ConstrutorConcreto
+    ConstrutorConcreto <|-- ConstrutorCasaModerna
+    ConstrutorConcreto <|-- ConstrutorCasaClassica
+    ConstrutorConcreto <|-- ConstrutorCasaMinimalista
+    Casa <|-- CasaModerna
+    Casa <|-- CasaClassica
+    Casa <|-- CasaMinimalista
 ```
 
 [Mermaid Class Diagram.html](https://mermaid.js.org/syntax/classDiagram.html)
