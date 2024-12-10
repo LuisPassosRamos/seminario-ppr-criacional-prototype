@@ -63,7 +63,6 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
 
 ```mermaid
 ---
-title: Padrão Builder - Construção de Casas
 classDiagram
     class Diretor {
         +construir(builder: Construtor)
