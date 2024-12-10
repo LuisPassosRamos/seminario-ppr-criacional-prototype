@@ -1,10 +1,21 @@
-# Seminario Prototype
+# Prototype
 
-## introdução 
+## Intenção
 
-- Documento (abstrato)
-- Contrato (clone)
-- Relatorio (clone)
+
+
+
+
+## Motivação
+
+
+
+
+## Aplicabilidade
+
+
+
+##Estrutura
 
 ```mermaid
 ---
@@ -32,6 +43,27 @@ classDiagram
 
 
 ```
+## Participantes 
+- Documento (abstrato)
+- Contrato (clone)
+- Relatorio (clone)
+
+## Outro Exemplo
+
+
+## Consequências
+
+
+## Implementação 
+
+
+## Exemplo de código 
+
+## Usos Conhecidos 
+
+## Padrões Relacionados 
+
+## Referências 
 
 [Mermaid Class Diagram.html](https://mermaid.js.org/syntax/classDiagram.html)
 
