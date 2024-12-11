@@ -5,11 +5,14 @@ Separar a construção de um objeto complexo da sua representação de modo que 
 mesmo processo de construção possa criar diferentes representações.
 ## Motivação 
 
+Imagine desenvolver um sistema onde objetos complexos podem ter diferentes configurações ou versões. Gerenciar a criação desses objetos sem duplicar código e mantendo a flexibilidade para mudanças futuras pode ser um grande desafio. É nesse contexto que o padrão de projeto **Builder** se torna essencial: ele organiza o processo de construção de objetos, separando a lógica de montagem dos detalhes específicos. Isso não apenas facilita a manutenção, mas também permite reutilizar o mesmo processo de construção para criar diversas representações, promovendo clareza e modularidade no código.
+
+![image](https://github.com/user-attachments/assets/3a44ad06-4473-469c-b660-464c2f74082a)
+
+## Exemplo Builder:
 Imagine que você está construindo casas. Cada casa pode ter diferentes características, como materiais, design, número de cômodos, ou até mesmo o estilo arquitetônico (moderno, clássico, minimalista).
 
 Em vez de construir cada casa do zero manualmente e misturar todos os detalhes da construção, você contrata um arquiteto (o Builder). Esse arquiteto é especializado em planejar e organizar os passos para criar casas específicas de acordo com as suas necessidades. Um gerente de obra (o Director) coordena o trabalho do arquiteto, garantindo que a construção siga o plano correto.
-
-![image](https://github.com/user-attachments/assets/3a44ad06-4473-469c-b660-464c2f74082a)
 
 
 Se você quiser construir uma casa moderna, contrata um arquiteto especializado em design moderno. Se preferir uma casa clássica, escolhe outro arquiteto. O gerente de obras é sempre o mesmo, mas ele coordena o trabalho com base no arquiteto selecionado.
@@ -67,8 +70,16 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
   - Representa o objeto final criado.  
   - É o resultado do trabalho coordenado pelo Director e definido pelo ConcreteBuilder.  
   - **Exemplo**: A casa moderna com janelas amplas e linhas retas, ou a casa clássica com ornamentos e telhado inclinado.
+ 
+## Exemplo sem Builder: 
 
-## Estrutura:
+![image](https://github.com/user-attachments/assets/c78625c2-d546-4d12-97ec-9571d5346562)
+
+
+## Exemplo com Builder:
+
+![image](https://github.com/user-attachments/assets/0c6ce3b3-aad1-471c-baf6-fc5e6363e210)
+
 
 ```mermaid
 
