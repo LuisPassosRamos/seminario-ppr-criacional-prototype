@@ -148,11 +148,119 @@ Copia o objeto e todos os objetos aos quais ele se refere, criando novas instân
 - Dito isso, no JavaScript, é possível simular o mecanismo da herança, utilizando o prototype para compartilhar propriedades e métodos entre objetos. Embora o JavaScript não tenha um sistema de classes como em linguagens tradicionais, ele permite que objetos "herdem" comportamentos de outros objetos por meio das suas referências de protótipo. Isso é feito de forma dinâmica, permitindo flexibilidade, como a capacidade de modificar ou substituir o protótipo de um objeto a qualquer momento, sem a necessidade de uma hierarquia fixa de classes.
 
 ## Exemplo de código 
+### 1. Criando classe abstrata, que servirá como protótipo
 ```java
- teste 
+ public abstract class Documento implements Cloneable {
+    private String titulo;
+    private String conteudo;
+
+    public Documento(String titulo, String conteudo) {
+        this.titulo = titulo;
+        this.conteudo = conteudo;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    @Override
+    public Documento clone() {
+        try {
+            return (Documento) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Erro ao clonar documento!", e);
+        }
+    }
+
+    public abstract void exibirDetalhes();
+}
+ 
 ```
+**Explicação: A classe Documento é abstrata e implementa a interface Cloneable, permitindo que objetos derivados sejam clonados. Ela possui dois atributos, titulo e conteudo, com métodos getters e setters para acesso e modificação. O método clone() é sobrescrito para criar uma cópia do documento utilizando o método super.clone(), realizando uma clonagem superficial. Além disso, a classe contém um método abstrato exibirDetalhes(), que deve ser implementado pelas subclasses para exibir informações específicas do documento. Essa estrutura facilita a criação de diferentes tipos de documentos com base em um modelo comum.**
+
+### 2. Criando a classe Contrato, que é uma cópia da classe Documento
+```java
+public class Contrato extends Documento {
+    private String nomeCliente;
+
+    public Contrato(String titulo, String conteudo, String nomeCliente) {
+        super(titulo, conteudo);
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("Contrato:");
+        System.out.println("Título: " + getTitulo());
+        System.out.println("Conteúdo: " + getConteudo());
+        System.out.println("Cliente: " + nomeCliente);
+        System.out.println();
+    }
+}
+```
+**Explicação: A classe Contrato estende a classe Documento e adiciona um atributo específico, nomeCliente, que representa o nome do cliente associado ao contrato. O construtor da classe Contrato chama o construtor da classe pai Documento para inicializar os atributos titulo e conteudo, além de inicializar nomeCliente. Os métodos getNomeCliente() e setNomeCliente() permitem acessar e modificar o nome do cliente. O método exibirDetalhes() é uma implementação do método abstrato da classe pai, exibindo as informações completas do contrato, incluindo o título, o conteúdo e o nome do cliente, proporcionando uma exibição dos detalhes do contrato.**
+
+### 3. Conclusão
+O código define uma estrutura de documentos utilizando o padrão Prototype. A classe Documento é abstrata e implementa a interface Cloneable, permitindo a clonagem de objetos. Ela possui atributos básicos como titulo e conteudo, com métodos para acessá-los e modificá-los, e um método abstrato exibirDetalhes() que deve ser implementado nas subclasses. A classe Contrato estende Documento, adicionando o atributo nomeCliente e implementando o método exibirDetalhes() para mostrar informações específicas do contrato. Essa estrutura permite a criação de documentos clonáveis e personalizados, como contratos, facilitando a reutilização e modificação de objetos sem a necessidade de reescrever todo o conteúdo.
+
+
+
+
+
 
 ## Usos Conhecidos 
+
+### O padrão Prototype está bastante presente nos dias atuais, exploraremos alguns exemplos práticos utilizados no dia a dia, tanto no desenvolvimento de software quanto em outras áreas, que por muitas vezes acabamos nem percebendo.
+
+1. Desenvolvimento de Jogos
+No desenvolvimento de jogos, o Prototype é utilizado para criar personagens e objetos semelhantes, mas com variações. Em vez de recriar objetos complexos de personagens, como magos ou guerreiros, a partir do zero, é possível criar um personagem genérico (protótipo) e, a partir dele, gerar clones com atributos diferentes, como pontos de vida ou força.
+
+Exemplo: Em um jogo de RPG, um personagem base pode ter atributos padrões como saúde, ataque e defesa. A partir desse protótipo, um clone pode ser criado para um guerreiro, alterando os atributos para maior resistência física, ou para um mago, com maior poder mágico. Isso economiza tempo e recursos, pois o objeto é modificado de maneira eficiente sem necessidade de reescrever a lógica do personagem.
+
+2. Gerenciamento de Documentos e Relatórios
+O padrão Prototype é útil para duplicar documentos e relatórios com estruturas semelhantes, mas com dados específicos modificados. Em sistemas de geração de relatórios ou processamento de texto, é comum utilizar um protótipo de documento para criar novas instâncias de forma rápida.
+
+Exemplo: Imagine um sistema que gera relatórios financeiros. Em vez de criar um novo relatório do zero para cada mês ou cada cliente, um modelo base pode ser clonado, e os dados financeiros podem ser atualizados conforme necessário. Isso permite uma criação mais rápida e com menor custo, já que a estrutura básica do documento é mantida.
+
+3. Interfaces de Usuário (UI)
+Em sistemas de interface de usuário, o Prototype pode ser usado para criar componentes reutilizáveis. Elementos como botões, caixas de texto e tabelas podem ser definidos como protótipos, e a partir deles, clones podem ser criados com diferentes propriedades, como cor, tamanho ou comportamento.
+
+Exemplo: Em uma aplicação de design gráfico, o protótipo pode ser um conjunto básico de formas geométricas, como círculos e quadrados. Esses objetos podem ser clonados para criar novas instâncias, onde o usuário pode modificar apenas atributos específicos, como cor ou tamanho, mantendo a estrutura básica e o comportamento da forma.
+
+4. Gerenciamento de Configurações
+Em sistemas que exigem configurações dinâmicas, como em plataformas de e-commerce ou jogos, o padrão Prototype pode ser usado para criar novas configurações baseadas em um modelo inicial. Isso é útil quando as configurações de diferentes módulos ou componentes são semelhantes, mas com pequenas variações.
+
+Exemplo: Em uma plataforma de e-commerce, a configuração de layout do site pode ser um protótipo. A partir desse protótipo, clones podem ser criados para diferentes temas de loja, alterando apenas a cor e os detalhes do design, mas mantendo a estrutura e funcionalidades gerais do layout.
+
+5. Fluxos de Trabalho e Processos
+O conceito de clonagem de fluxos de trabalho ou processos é uma aplicação interessante do padrão Prototype. Isso permite a criação de diferentes versões de um processo com variações mínimas, com base em um modelo genérico.
+
+Exemplo: Uma empresa que gerencia pedidos pode ter um processo genérico para tratar todos os tipos de pedidos. A partir desse processo base, fluxos específicos podem ser clonados e adaptados para diferentes tipos de produtos ou categorias, com ajustes apenas nas etapas de embalagem ou envio, sem a necessidade de criar um novo processo do zero.
+
+6. Produção em Massa de Produtos
+No mundo físico, o Prototype é utilizado em linhas de produção para criar produtos com variações, mas com uma base comum. O padrão permite a criação de diferentes versões de um produto, clonando um protótipo e personalizando detalhes conforme necessário.
+
+Exemplo: Em uma fábrica de automóveis, a linha de produção pode criar um modelo básico de carro (protótipo). A partir desse protótipo, carros de diferentes versões podem ser criados, com variações no motor, cor e acessórios. Isso facilita a produção em massa de itens com características personalizáveis, sem a necessidade de um processo de fabricação totalmente novo para cada variante.
 
 ## Padrões Relacionados 
 Prototype e Abstract Factory têm em comum o objetivo de **abstrair a criação de objetos**, permitindo ao cliente criar instâncias sem conhecer detalhes de implementação. O Prototype cria objetos clonando um protótipo existente, enquanto o Abstract Factory cria famílias de objetos relacionados. Eles podem ser usados em conjunto, com o Abstract Factory coordenando e armazenando a criação de produtos (protótipos) e o Prototype permitindo clonar e personalizar esses objetos conforme necessário.
