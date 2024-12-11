@@ -7,44 +7,83 @@ Permite a criação de famílias de objetos relacionados ou dependentes sem espe
 ## Motivação
 O código a seguir representa um problema clássico de alto acoplamento e dificuldade de manutenção. O uso de estruturas como if ou switch para determinar o tipo de dispositivo e suas variantes gera as seguintes limitações:
 
+Figura 1 - Exemplo Abstract Factory
 
+1. Complexidade do Cliente: A lógica para determinar o tipo de dispositivo está embutida na classe DeviceFactory, tornando-a mais difícil de manter e testar.
+2. Dificuldade para Adicionar Novos Produtos: Sempre que um novo tipo de dispositivo (ou variante) é introduzido, é necessário modificar o método createDevice, violando o princípio aberto/fechado (Open/Closed Principle).
+3. Um design mais modular e flexível pode ser alcançado encapsulando a criação dos dispositivos em fábricas específicas e criando assim um nível de abstração, eliminando a necessidade de lógica condicional dentro do cliente.
 
-- item
-- item
-- item
-
-
-1. valor
-2. valor
-3. valor
+## Aplicabilidade
+Use o padrão Abstract Factory quando:
+- Um sistema precisa ser independente, gerando uma solução desacoplada para criar produtos relacionados.
+- Um sistema precisa ser configurado com uma dentre várias famílias de produtos.
+- Desejar garantir que objetos de uma mesma família sejam usados em conjunto.
+- Desejar fornecer uma biblioteca de classes de produtos sem alterar o código do cliente e sem expor suas interfaces e implementação.
 
 ```mermaid
 ---
-title: Animal example
+title: Fábrica de Marcas
 ---
 classDiagram
-    note "From Duck till Zebra"
-    Animal <|-- Duck
-    note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-        +String beakColor
-        +swim()
-        +quack()
+    class Actor
+
+    class IDeviceFactory {
+        +createPhones()
+        +createWatch()
     }
-    class Fish{
-        -int sizeInFeet
-        -canEat()
+
+    class AndroidFactory {
+        +createPhones() AndroidPhone
+        +createWatch() AndroidWatch
     }
-    class Zebra{
-        +bool is_wild
-        +run()
+
+    class AppleFactory {
+        +createPhones() IPhone
+        +createWatch() IWatch
     }
+
+    class Phone {
+        +getDetails() string
+    }
+
+    class Watch {
+        +getDetails() string
+    }
+
+    class AndroidPhone {
+        +getDetails() string
+    }
+
+    class IPhone {
+        +getDetails() string
+    }
+
+    class AndroidWatch {
+        +getDetails() string
+    }
+
+    class IWatch {
+        +getDetails() string
+    }
+
+    %% Relações
+    Actor --> IDeviceFactory
+
+    IDeviceFactory <|-- AndroidFactory
+    IDeviceFactory <|-- AppleFactory
+
+    AndroidFactory --> AndroidPhone
+    AndroidFactory --> AndroidWatch
+
+    AppleFactory --> IPhone
+    AppleFactory --> IWatch
+
+    AndroidPhone --|> Phone
+    IPhone --|> Phone
+
+    AndroidWatch --|> Watch
+    IWatch --|> Watch
+
 
 ```
 
