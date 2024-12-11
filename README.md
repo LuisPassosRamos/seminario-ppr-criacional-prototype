@@ -50,6 +50,79 @@ Use o padrão Abstract Factory quando:
 ## Estrutura
 
 ```mermaid
+classDiagram
+    class Client {
+        +operation()
+    }
+    class AbstractFactory {
+        +createProductA()
+        +createProductB()
+    }
+    class ConcreteFactoryA {
+        +createProductA()
+        +createProductB()
+    }
+    class ConcreteFactoryB {
+        +createProductA()
+        +createProductB()
+    }
+    class AbstractProductA {
+        +operationA()
+    }
+    class AbstractProductB {
+        +operationB()
+    }
+    class ProductA1 {
+        +operationA()
+    }
+    class ProductA2 {
+        +operationA()
+    }
+    class ProductB1 {
+        +operationB()
+    }
+    class ProductB2 {
+        +operationB()
+    }
+
+    Client --> AbstractFactory
+    AbstractFactory <|-- ConcreteFactoryA
+    AbstractFactory <|-- ConcreteFactoryB
+    ConcreteFactoryA --> AbstractProductA
+    ConcreteFactoryA --> AbstractProductB
+    ConcreteFactoryB --> AbstractProductA
+    ConcreteFactoryB --> AbstractProductB
+    AbstractProductA <|-- ProductA1
+    AbstractProductA <|-- ProductA2
+    AbstractProductB <|-- ProductB1
+    AbstractProductB <|-- ProductB2
+
+
+## Participantes
+
+- **AbstractFactory**
+Declara uma interface para criar famílias de objetos relacionados.
+Exemplo: createProductA() e createProductB().
+
+- **ConcreteFactory**
+Implementa os métodos da AbstractFactory para criar objetos concretos.
+Exemplo: ConcreteFactoryA e ConcreteFactoryB.
+
+- **AbstractProduct**
+Define uma interface para cada tipo de produto.
+Exemplo: AbstractProductA e AbstractProductB.
+
+- **ConcreteProduct**
+Implementa a interface de produtos concretos.
+Exemplo: ProductA1, ProductA2, ProductB1 e ProductB2.
+
+- **Client**
+Usa somente as interfaces fornecidas pela AbstractFactory e AbstractProduct.
+
+
+## Outro exemplo
+
+```mermaid
 ---
 title: Fábrica de Marcas
 ---
