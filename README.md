@@ -124,7 +124,7 @@ Prototype tem muitas das mesmas consequências que o Abstract Factory e Builder:
 
 
 ## Implementação 
-- Pode ser um desafio implementar de maneira correta o padrão prototype, dentre eles:
+ ### Pode ser um desafio implementar de maneira correta o padrão prototype, dentre eles:
 1. Implementar a operação de clonagem corretamente : O padrão Prototype exige a implementação de uma operação de clonagem precisa para garantir que o novo objeto seja uma cópia exata do protótipo, sem causar problemas como referências compartilhadas inadvertidas.
 
 2. Gerenciar protótipos de forma eficiente : Em sistemas complexos, pode ser difícil organizar e manter os protótipos de maneira eficiente, garantindo que eles sejam facilmente reutilizáveis e adaptáveis para diferentes tipos de objetos.
@@ -132,9 +132,12 @@ Prototype tem muitas das mesmas consequências que o Abstract Factory e Builder:
 3. Garantir a inicialização adequada dos clones: Quando se clona um objeto, é importante garantir que a inicialização do clone seja feita corretamente, com todos os atributos e estados sendo copiados ou ajustados de acordo com o comportamento desejado.
 
 - Processo de clonagem
+  
 O processo de clonagem de um objeto pode ser feito usando duas abordagens:
+
 1. Shallow Copy (ou cópia superficial): 
 Copia os valores primitivos e as referências dos objetos, mas não os objetos em si. As referências no novo objeto apontam para os mesmos objetos que as do original, ou seja, o objeto pai é clonado, mas seus filhos são compartilhados entre os objetos.
+
 2. Deep Copy (ou cópia profunda):
 Copia o objeto e todos os objetos aos quais ele se refere, criando novas instâncias para todos os elementos. O objeto pai e todos os objetos contidos nele são clonados, garantindo que não haja referências compartilhadas.
 
@@ -145,6 +148,9 @@ Copia o objeto e todos os objetos aos quais ele se refere, criando novas instân
 - Dito isso, no JavaScript, é possível simular o mecanismo da herança, utilizando o prototype para compartilhar propriedades e métodos entre objetos. Embora o JavaScript não tenha um sistema de classes como em linguagens tradicionais, ele permite que objetos "herdem" comportamentos de outros objetos por meio das suas referências de protótipo. Isso é feito de forma dinâmica, permitindo flexibilidade, como a capacidade de modificar ou substituir o protótipo de um objeto a qualquer momento, sem a necessidade de uma hierarquia fixa de classes.
 
 ## Exemplo de código 
+```java
+ teste 
+```
 
 ## Usos Conhecidos 
 
