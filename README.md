@@ -89,7 +89,13 @@ Prototype tem muitas das mesmas consequências que o Abstract Factory e Builder:
 
 
 ## Implementação 
-- Pode ser um desafio implementar de maneira correta o padrão prototype, principalmente para implementar a operação clone, utilizar um gerenciador de prototipos
+- Pode ser um desafio implementar de maneira correta o padrão prototype, dentre eles:
+ 1. Implementar a operação clone.
+
+ 2. Utilizar um gerenciador de prototipos.
+
+ 3. Iniciar Clones.
+
 - Processo de clonagem
 O processo de clonagem de um objeto pode ser feito usando duas abordagens:
 1. Shallow Copy (ou cópia superficial): 
