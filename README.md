@@ -8,7 +8,7 @@ Kit de fábrica
 Fábrica de fábricas
 
 ## Motivação
-O código a seguir representa um problema clássico de alto acoplamento e dificuldade de manutenção. O uso de estruturas como if ou switch para determinar o tipo de dispositivo e suas variantes gera as seguintes limitações:
+O código a seguir representa um problema clássico de alto acoplamento e dificuldade de manutenção. 
 
 ```typescript
 import { AndroidPhone } from "../models/AndroidPhone";
@@ -32,12 +32,11 @@ export class DeviceFactory {
     }
 }
 ```
-
-### Esse código demonstra as seguintes especificações:
+O uso de estruturas como if ou switch para determinar o tipo de dispositivo e suas variantes gera as seguintes limitações:
 1. Complexidade do Cliente: A lógica para determinar o tipo de dispositivo está embutida na classe DeviceFactory, tornando-a mais difícil de manter e testar.
 2. Dificuldade para Adicionar Novos Produtos: Sempre que um novo tipo de dispositivo (ou variante) é introduzido, é necessário modificar o método createDevice, violando o princípio aberto/fechado (Open/Closed Principle).
-### Sugestão de melhoria:
-Um design mais modular e flexível pode ser alcançado encapsulando a criação dos dispositivos em fábricas específicas e criando assim um nível de abstração, eliminando a necessidade de lógica condicional dentro do cliente.
+   
+💡 Um design mais modular e flexível pode ser alcançado encapsulando a criação dos dispositivos em fábricas específicas e criando assim um nível de abstração, eliminando a necessidade de lógica condicional dentro do cliente.
 
 ## Aplicabilidade
 Use o padrão Abstract Factory quando:
