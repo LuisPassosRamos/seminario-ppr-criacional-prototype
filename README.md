@@ -131,7 +131,7 @@ Prototype tem muitas das mesmas consequências que o Abstract Factory e Builder:
 
 3. Garantir a inicialização adequada dos clones: Quando se clona um objeto, é importante garantir que a inicialização do clone seja feita corretamente, com todos os atributos e estados sendo copiados ou ajustados de acordo com o comportamento desejado.
 
-- Processo de clonagem
+### Processo de clonagem
   
 O processo de clonagem de um objeto pode ser feito usando duas abordagens:
 
