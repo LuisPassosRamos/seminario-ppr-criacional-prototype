@@ -1,4 +1,4 @@
-# Abstract Factory - Fábrica Abstrata
+# Abstract Factory
 
 ## Intenção
 
