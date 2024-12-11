@@ -235,32 +235,21 @@ O código define uma estrutura de documentos utilizando o padrão Prototype. A c
 1. Desenvolvimento de Jogos
 No desenvolvimento de jogos, o Prototype é utilizado para criar personagens e objetos semelhantes, mas com variações. Em vez de recriar objetos complexos de personagens, como magos ou guerreiros, a partir do zero, é possível criar um personagem genérico (protótipo) e, a partir dele, gerar clones com atributos diferentes, como pontos de vida ou força.
 
-Exemplo: Em um jogo de RPG, um personagem base pode ter atributos padrões como saúde, ataque e defesa. A partir desse protótipo, um clone pode ser criado para um guerreiro, alterando os atributos para maior resistência física, ou para um mago, com maior poder mágico. Isso economiza tempo e recursos, pois o objeto é modificado de maneira eficiente sem necessidade de reescrever a lógica do personagem.
-
 2. Gerenciamento de Documentos e Relatórios
 O padrão Prototype é útil para duplicar documentos e relatórios com estruturas semelhantes, mas com dados específicos modificados. Em sistemas de geração de relatórios ou processamento de texto, é comum utilizar um protótipo de documento para criar novas instâncias de forma rápida.
-
-Exemplo: Imagine um sistema que gera relatórios financeiros. Em vez de criar um novo relatório do zero para cada mês ou cada cliente, um modelo base pode ser clonado, e os dados financeiros podem ser atualizados conforme necessário. Isso permite uma criação mais rápida e com menor custo, já que a estrutura básica do documento é mantida.
 
 3. Interfaces de Usuário (UI)
 Em sistemas de interface de usuário, o Prototype pode ser usado para criar componentes reutilizáveis. Elementos como botões, caixas de texto e tabelas podem ser definidos como protótipos, e a partir deles, clones podem ser criados com diferentes propriedades, como cor, tamanho ou comportamento.
 
-Exemplo: Em uma aplicação de design gráfico, o protótipo pode ser um conjunto básico de formas geométricas, como círculos e quadrados. Esses objetos podem ser clonados para criar novas instâncias, onde o usuário pode modificar apenas atributos específicos, como cor ou tamanho, mantendo a estrutura básica e o comportamento da forma.
-
 4. Gerenciamento de Configurações
 Em sistemas que exigem configurações dinâmicas, como em plataformas de e-commerce ou jogos, o padrão Prototype pode ser usado para criar novas configurações baseadas em um modelo inicial. Isso é útil quando as configurações de diferentes módulos ou componentes são semelhantes, mas com pequenas variações.
-
-Exemplo: Em uma plataforma de e-commerce, a configuração de layout do site pode ser um protótipo. A partir desse protótipo, clones podem ser criados para diferentes temas de loja, alterando apenas a cor e os detalhes do design, mas mantendo a estrutura e funcionalidades gerais do layout.
 
 5. Fluxos de Trabalho e Processos
 O conceito de clonagem de fluxos de trabalho ou processos é uma aplicação interessante do padrão Prototype. Isso permite a criação de diferentes versões de um processo com variações mínimas, com base em um modelo genérico.
 
-Exemplo: Uma empresa que gerencia pedidos pode ter um processo genérico para tratar todos os tipos de pedidos. A partir desse processo base, fluxos específicos podem ser clonados e adaptados para diferentes tipos de produtos ou categorias, com ajustes apenas nas etapas de embalagem ou envio, sem a necessidade de criar um novo processo do zero.
-
 6. Produção em Massa de Produtos
 No mundo físico, o Prototype é utilizado em linhas de produção para criar produtos com variações, mas com uma base comum. O padrão permite a criação de diferentes versões de um produto, clonando um protótipo e personalizando detalhes conforme necessário.
 
-Exemplo: Em uma fábrica de automóveis, a linha de produção pode criar um modelo básico de carro (protótipo). A partir desse protótipo, carros de diferentes versões podem ser criados, com variações no motor, cor e acessórios. Isso facilita a produção em massa de itens com características personalizáveis, sem a necessidade de um processo de fabricação totalmente novo para cada variante.
 
 ## Padrões Relacionados 
 Prototype e Abstract Factory têm em comum o objetivo de **abstrair a criação de objetos**, permitindo ao cliente criar instâncias sem conhecer detalhes de implementação. O Prototype cria objetos clonando um protótipo existente, enquanto o Abstract Factory cria famílias de objetos relacionados. Eles podem ser usados em conjunto, com o Abstract Factory coordenando e armazenando a criação de produtos (protótipos) e o Prototype permitindo clonar e personalizar esses objetos conforme necessário.
