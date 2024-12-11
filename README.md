@@ -7,22 +7,24 @@ mesmo processo de construção possa criar diferentes representações.
 
 Imagine que você está construindo casas. Cada casa pode ter diferentes características, como materiais, design, número de cômodos, ou até mesmo o estilo arquitetônico (moderno, clássico, minimalista).
 
-```mermaid
-classDiagram
-    class GerenteDeObras {
-        +construirCasaModerna(): CasaModerna
-        +construirCasaClassica(): CasaClassica
-    }
-    class Casa {
-    }
-    class CasaModerna {
-    }
-    class CasaClassica {
-    }
+@startuml
+class GerenteDeObras {
+    +construirCasaModerna(): CasaModerna
+    +construirCasaClassica(): CasaClassica
+}
 
-    GerenteDeObras --> CasaModerna : cria diretamente
-    GerenteDeObras --> CasaClassica : cria diretamente
-```
+class Casa {
+}
+
+class CasaModerna {
+}
+
+class CasaClassica {
+}
+
+GerenteDeObras --> CasaModerna : cria diretamente
+GerenteDeObras --> CasaClassica : cria diretamente
+@enduml
 
 
 
