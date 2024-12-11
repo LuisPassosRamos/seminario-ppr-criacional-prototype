@@ -1,10 +1,18 @@
-# seminario-1
+# Abstract Factory - Fábrica Abstrata
 
-## introdução 
+## Intenção
+
+Permite a criação de famílias de objetos relacionados ou dependentes sem especificar suas classes concretas.
+
+## Motivação
+O código a seguir representa um problema clássico de alto acoplamento e dificuldade de manutenção. O uso de estruturas como if ou switch para determinar o tipo de dispositivo e suas variantes gera as seguintes limitações:
+
+
 
 - item
 - item
 - item
+
 
 1. valor
 2. valor
