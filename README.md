@@ -83,19 +83,9 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
 
 ## Colaborações: 
 
-### Gerente de Obras (Director) → Arquiteto (Builder):
-
 - O Gerente de Obras depende de um arquiteto específico para executar os passos necessários à construção de uma casa. Ele coordena o processo, chamando os métodos do arquiteto em uma sequência definida, sem se preocupar com os detalhes da implementação de cada passo.
-
-### Arquiteto (Builder) → Casa:
-
 - O arquiteto é responsável por construir as partes individuais da casa (fundação, paredes, telhado) e entregar o resultado final. Cada implementação do arquiteto conhece os detalhes específicos de um estilo de casa.
-
-### Gerente de Obras (Director) → Casa:
-
 - O Gerente de Obras obtém a casa finalizada do arquiteto e a entrega ao cliente ou a utiliza em outra parte do sistema.
-### Cliente → Gerente de Obras (Director):
-
 - O cliente especifica ao Gerente de Obras qual tipo de casa deseja construir. O Gerente de Obras então escolhe o arquiteto apropriado para realizar o trabalho
 
 ### Exemplo:
