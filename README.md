@@ -23,9 +23,15 @@ Para atas de reunião, o sistema utiliza o protótipo da ata básica, ajustando 
 
 
 ## Aplicabilidade
-O padrão Prototype é ideal para simplificar a criação de objetos reutilizando instâncias como modelos, reduzindo custos e complexidade. É útil em sistemas gráficos, como editores CAD, para clonar formas ou modelos 3D e ajustá-los rapidamente. Em jogos, permite gerar inimigos ou itens semelhantes a partir de modelos padrão, modificando apenas atributos específicos, como força ou posição.
+O padrão Prototype é ideal em cenários onde se busca maior flexibilidade e eficiência no processo de criação de objetos. Ele é recomendado nos seguintes casos:
 
-Também evita a proliferação de subclasses, permitindo que componentes gráficos, como botões ou caixas de texto, sejam clonados e personalizados sem a necessidade de novas classes. Além disso, é eficiente em sistemas dinâmicos, onde os objetos a serem criados só são definidos em tempo de execução, promovendo flexibilidade e simplicidade no desenvolvimento.
+Independência da criação de objetos: Quando é necessário que o sistema funcione de forma independente de como os objetos são criados, compostos ou representados. Isso reduz o acoplamento e simplifica a manutenção.
+
+Definição dinâmica das classes a serem instanciadas: Em situações onde as classes de objetos precisam ser especificadas durante a execução do programa, como em sistemas que utilizam carregamento dinâmico de dados ou componentes.
+
+Evitar hierarquias de classes complexas: Quando seria necessário criar uma hierarquia paralela de classes de fábrica para suportar a criação de produtos. O Prototype elimina essa necessidade ao permitir que os objetos sejam clonados diretamente.
+
+Gerenciamento eficiente de estados diferentes: Quando uma classe pode assumir apenas um número limitado de combinações de estados, é mais prático criar protótipos para cada configuração inicial e cloná-los conforme necessário, em vez de configurar manualmente cada instância repetidamente.
 
 
 ## Estrutura
