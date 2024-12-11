@@ -98,7 +98,7 @@ classDiagram
     note for Guerreiro "Personagem com alta defesa e força física"
     note for Mago "Personagem com habilidades mágicas e alto poder de ataque"
 ```
-##Participantes
+## Participantes
 
 - Personagem (abstrato): Define os atributos e métodos comuns para todos os personagens.
 - Guerreiro (clone): Representa um personagem do tipo Guerreiro, com atributos relacionados à força e defesa.
