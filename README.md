@@ -62,12 +62,42 @@ classDiagram
 
 
 ```
+
 ## Participantes 
 - Documento (abstrato)
 - Contrato (clone)
 - Relatorio (clone)
 
 ## Outro Exemplo
+```mermaid
+---
+title: Criação de Personagens
+---
+classDiagram
+    Personagem <|-- Guerreiro
+    Personagem <|-- Mago
+    class Personagem {
+        +String nome
+        +int nivel
+        +int vida
+        +int ataque
+        +int defesa
+        +clone() Personagem
+        +exibirDetalhes() void
+    }
+    class Guerreiro {
+        +int força
+        +int armadura
+        +exibirDetalhes() void
+    }
+    class Mago {
+        +int mana
+        +int poderMagico
+        +exibirDetalhes() void
+    }
+    note for Guerreiro "Personagem com alta defesa e força física"
+    note for Mago "Personagem com habilidades mágicas e alto poder de ataque"
+```
 
 
 ## Consequências
