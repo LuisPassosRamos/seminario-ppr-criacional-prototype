@@ -7,24 +7,7 @@ mesmo processo de construção possa criar diferentes representações.
 
 Imagine que você está construindo casas. Cada casa pode ter diferentes características, como materiais, design, número de cômodos, ou até mesmo o estilo arquitetônico (moderno, clássico, minimalista).
 
-@startuml
-class GerenteDeObras {
-    +construirCasaModerna(): CasaModerna
-    +construirCasaClassica(): CasaClassica
-}
-
-class Casa {
-}
-
-class CasaModerna {
-}
-
-class CasaClassica {
-}
-
-GerenteDeObras --> CasaModerna : cria diretamente
-GerenteDeObras --> CasaClassica : cria diretamente
-@enduml
+![image](https://github.com/user-attachments/assets/3a44ad06-4473-469c-b660-464c2f74082a)
 
 
 
