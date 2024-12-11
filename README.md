@@ -53,11 +53,11 @@ classDiagram
         +String autor
         +exibirDetalhes() void
     }
+    note for Relatorio "Relatórios personalizados como Relatório Financeiro"
     class Contrato {
         +String nomeCliente
         +exibirDetalhes() void
     }
-    note for Relatorio "Relatórios personalizados como Relatório Financeiro"
     note for Contrato "Contratos específicos como Compra e Venda"
 
 
