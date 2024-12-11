@@ -232,22 +232,22 @@ O código define uma estrutura de documentos utilizando o padrão Prototype. A c
 
 ### O padrão Prototype está bastante presente nos dias atuais, exploraremos alguns exemplos práticos utilizados no dia a dia, tanto no desenvolvimento de software quanto em outras áreas, que por muitas vezes acabamos nem percebendo.
 
-1. Desenvolvimento de Jogos
+1. Desenvolvimento de Jogos:
 No desenvolvimento de jogos, o Prototype é utilizado para criar personagens e objetos semelhantes, mas com variações. Em vez de recriar objetos complexos de personagens, como magos ou guerreiros, a partir do zero, é possível criar um personagem genérico (protótipo) e, a partir dele, gerar clones com atributos diferentes, como pontos de vida ou força.
 
-2. Gerenciamento de Documentos e Relatórios
+2. Gerenciamento de Documentos e Relatórios:
 O padrão Prototype é útil para duplicar documentos e relatórios com estruturas semelhantes, mas com dados específicos modificados. Em sistemas de geração de relatórios ou processamento de texto, é comum utilizar um protótipo de documento para criar novas instâncias de forma rápida.
 
-3. Interfaces de Usuário (UI)
+3. Interfaces de Usuário (UI):
 Em sistemas de interface de usuário, o Prototype pode ser usado para criar componentes reutilizáveis. Elementos como botões, caixas de texto e tabelas podem ser definidos como protótipos, e a partir deles, clones podem ser criados com diferentes propriedades, como cor, tamanho ou comportamento.
 
-4. Gerenciamento de Configurações
+4. Gerenciamento de Configurações:
 Em sistemas que exigem configurações dinâmicas, como em plataformas de e-commerce ou jogos, o padrão Prototype pode ser usado para criar novas configurações baseadas em um modelo inicial. Isso é útil quando as configurações de diferentes módulos ou componentes são semelhantes, mas com pequenas variações.
 
-5. Fluxos de Trabalho e Processos
+5. Fluxos de Trabalho e Processos:
 O conceito de clonagem de fluxos de trabalho ou processos é uma aplicação interessante do padrão Prototype. Isso permite a criação de diferentes versões de um processo com variações mínimas, com base em um modelo genérico.
 
-6. Produção em Massa de Produtos
+6. Produção em Massa de Produtos:
 No mundo físico, o Prototype é utilizado em linhas de produção para criar produtos com variações, mas com uma base comum. O padrão permite a criação de diferentes versões de um produto, clonando um protótipo e personalizando detalhes conforme necessário.
 
 
