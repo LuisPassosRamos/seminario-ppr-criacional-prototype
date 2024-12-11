@@ -10,6 +10,7 @@ Fábrica de fábricas
 ## Motivação
 O código a seguir representa um problema clássico de alto acoplamento e dificuldade de manutenção. O uso de estruturas como if ou switch para determinar o tipo de dispositivo e suas variantes gera as seguintes limitações:
 
+```typescript
 import { AndroidPhone } from "../models/AndroidPhone";
 import { AndroidWatch } from "../models/AndroidWatch";
 import { ApplePhone } from "../models/ApplePhone";
@@ -30,6 +31,7 @@ export class DeviceFactory {
         }
     }
 }
+```
 
 ### Esse código demonstra as seguintes especificações:
 1. Complexidade do Cliente: A lógica para determinar o tipo de dispositivo está embutida na classe DeviceFactory, tornando-a mais difícil de manter e testar.
