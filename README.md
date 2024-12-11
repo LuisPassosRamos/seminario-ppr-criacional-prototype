@@ -96,7 +96,7 @@ classDiagram
     AbstractProductA <|-- ProductA2
     AbstractProductB <|-- ProductB1
     AbstractProductB <|-- ProductB2
-
+```
 
 ## Participantes
 
