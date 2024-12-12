@@ -7,8 +7,6 @@ mesmo processo de construção possa criar diferentes representações.
 
 Imagine desenvolver um sistema onde objetos complexos podem ter diferentes configurações ou versões. Gerenciar a criação desses objetos sem duplicar código e mantendo a flexibilidade para mudanças futuras pode ser um grande desafio. É nesse contexto que o padrão de projeto **Builder** se torna essencial: ele organiza o processo de construção de objetos, separando a lógica de montagem dos detalhes específicos. Isso não apenas facilita a manutenção, mas também permite reutilizar o mesmo processo de construção para criar diversas representações, promovendo clareza e modularidade no código.
 
-![image](https://github.com/user-attachments/assets/3a44ad06-4473-469c-b660-464c2f74082a)
-
 ## Exemplo Builder:
 Imagine que você está construindo casas. Cada casa pode ter diferentes características, como materiais, design, número de cômodos, ou até mesmo o estilo arquitetônico (moderno, clássico, minimalista).
 
@@ -74,11 +72,6 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
 ## Exemplo sem Builder: 
 
 ![image](https://github.com/user-attachments/assets/c78625c2-d546-4d12-97ec-9571d5346562)
-
-
-## Exemplo com Builder:
-
-![image](https://github.com/user-attachments/assets/0c6ce3b3-aad1-471c-baf6-fc5e6363e210)
 
 
 ## Colaborações: 
