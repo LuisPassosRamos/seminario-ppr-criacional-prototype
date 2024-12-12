@@ -73,6 +73,43 @@ Simplifique a manutenção e a adição de novos tipos de representações sem m
 
 ![image](https://github.com/user-attachments/assets/c78625c2-d546-4d12-97ec-9571d5346562)
 
+## Exemplo com Builder: 
+
+@startuml
+class Casa {
+  - fundacao: String
+  - paredes: String
+  - telhado: String
+}
+
+abstract class ConstrutorCasa {
+  # casa: Casa
+  + criarNovaCasa()
+  + getCasa(): Casa
+  + {abstract} construirFundacao()
+  + {abstract} construirParedes()
+  + {abstract} construirTelhado()
+}
+
+class ConstrutorCasaModerna extends ConstrutorCasa
+class ConstrutorCasaClassica extends ConstrutorCasa
+
+class Diretor {
+  - construtor: ConstrutorCasa
+  + setConstrutor(construtor: ConstrutorCasa)
+  + construirCasa()
+  + getCasa(): Casa
+}
+
+Diretor --> ConstrutorCasa : usa
+ConstrutorCasa --> Casa : cria
+
+note right of ConstrutorCasa
+  Construtor concreto
+  define como a casa é construída
+end note
+@enduml
+
 
 ## Colaborações: 
 
