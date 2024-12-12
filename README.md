@@ -10,31 +10,13 @@ Fábrica de fábricas
 ## Motivação
 O código a seguir representa um problema clássico de alto acoplamento e dificuldade de manutenção. 
 
-```typescript
-import { AndroidPhone } from "../models/AndroidPhone";
-import { AndroidWatch } from "../models/AndroidWatch";
-import { ApplePhone } from "../models/ApplePhone";
-import { AppleWatch } from "../models/AppleWatch";
+@import "devicesExample/badCode/src/service/DeviceFactory.ts"
 
-export class DeviceFactory {
-    createDevice(type: string, device: string): any {
-        if (type === "Android" && device === "Watch") {
-            return new AndroidWatch();
-        } else if (type === "Android" && device === "Phone") {
-            return new AndroidPhone();
-        } else if (type === "Apple" && device === "Watch") {
-            return new AppleWatch();
-        } else if (type === "Apple" && device === "Phone") {
-            return new ApplePhone();
-        } else {
-            throw new Error("Invalid type or device");
-        }
-    }
-}
-```
+
 O uso de estruturas como if ou switch para determinar o tipo de dispositivo e suas variantes gera as seguintes limitações:
 1. **Complexidade do Cliente**: A lógica para determinar o tipo de dispositivo está embutida na classe DeviceFactory, tornando-a mais difícil de manter e testar.
 2. **Dificuldade para Adicionar Novos Produtos**: Sempre que um novo tipo de dispositivo (ou variante) é introduzido, é necessário modificar o método createDevice, violando o princípio aberto/fechado (Open/Closed Principle).
+
    
 `💡 Um design mais modular e flexível pode ser alcançado encapsulando a criação dos dispositivos em fábricas específicas e criando assim um nível de abstração, eliminando a necessidade de lógica condicional dentro do cliente.`
 
@@ -49,17 +31,17 @@ Use o padrão Abstract Factory quando:
 
 ## Estrutura
 
-```mermaid
-classDiagram
+```plantuml
+
     class WidgetFactory {
         +CreateScrollBar()
         +CreateWindow()
     }
-    class MotifWidgetFactory {
+    class MotifWidgetFactory extends WidgetFactory  {
         +CreateScrollBar()
         +CreateWindow()
     }
-    class PMWidgetFactory {
+    class PMWidgetFactory  extends WidgetFactory{
         +CreateScrollBar()
         +CreateWindow()
     }
@@ -67,24 +49,18 @@ classDiagram
         +operation()
     }
     class ScrollBar
-    class MotifScrollBar
-    class PMScrollBar
+    class MotifScrollBar extends ScrollBar
+    class PMScrollBar extends ScrollBar
     class Window
-    class MotifWindow
-    class PMWindow
+    class MotifWindow extends Window
+    class PMWindow  extends Window
 
     Client --> Window
     Client --> ScrollBar
-    WidgetFactory <|-- MotifWidgetFactory
-    WidgetFactory <|-- PMWidgetFactory
     MotifWidgetFactory --> MotifScrollBar
     MotifWidgetFactory --> MotifWindow
     PMWidgetFactory --> PMScrollBar
     PMWidgetFactory --> PMWindow
-    ScrollBar <|-- MotifScrollBar
-    ScrollBar <|-- PMScrollBar
-    Window <|-- MotifWindow
-    Window <|-- PMWindow
 ```
 
 ## Participantes
