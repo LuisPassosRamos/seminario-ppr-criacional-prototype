@@ -1,0 +1,12 @@
+
+docker-compose --env-file ./envs/high.env -p high-pool up --build
+ab -n 1000 -c 1000 http://localhost:8082/benchmark
+
+
+
+
+
+
+
+docker-compose --env-file ./envs/low.env  -p low-pool up --build
+ab -n 1000 -c 1000 http://localhost:8081/benchmark
