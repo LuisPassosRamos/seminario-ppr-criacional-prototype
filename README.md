@@ -304,7 +304,7 @@ public class AndroidFactory implements DeviceFactory {
 public class AppleFactory implements DeviceFactory {
     public Phone createPhone() {
         return new IPhone();
-
+```
 # Builder
 
 ## Intenção
@@ -531,7 +531,7 @@ class ConstrutorCasaClassica extends ConstrutorCasa {
 
     public Watch createWatch() {
         return new IWatch();
-
+```
 # Prototype
 
 ### Padrão de Projeto Criacional
@@ -844,7 +844,7 @@ GAMMA, Erich; HELM, Richard; JOHNSON, Ralph; VLISSIDES, John. Padrões de Projet
 O padrão **Abstract Factory** é uma solução poderosa para criar famílias de objetos relacionados, mantendo a consistência e a flexibilidade do código. Ele é ideal para sistemas que precisam suportar múltiplas variações de produtos, desde que a complexidade adicional seja gerenciável.
 
 
-
+```java
 // Diretor
 class Diretor {
     private ConstrutorCasa construtor;
