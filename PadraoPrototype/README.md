@@ -110,7 +110,13 @@ classDiagram
 ## Consequências
 Prototype tem muitas das mesmas consequências que o Abstract Factory e Builder:
 - Oculta as classes de produtos concretos do cliente, reduzindo a quantidade de informações que ele precisa conhecer, permitindo que o cliente crie novos objetos a partir de protótipos existentes, sem precisar entender ou interagir diretamente com o código das classes concretas.
-  
+
+### Diferença entre Herança e Clone 
+- aas
+
+###  Como linguagens que não são Orientadas a Objetos simulam herança utilizando o Padrão de Projeto Prototype
+- sdd
+
 ### Benefícios adicionais do Prototype:
 
 1. Modificação dinâmica de protótipos: O padrão permite modificar ou estender protótipos de objetos durante a execução do programa.
