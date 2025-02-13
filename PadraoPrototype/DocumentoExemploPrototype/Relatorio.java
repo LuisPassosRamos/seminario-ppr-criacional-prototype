@@ -1,9 +1,18 @@
+package DocumentoExemploPrototype;
+
 public class Relatorio extends Documento {
     private String autor;
 
     public Relatorio(String titulo, String conteudo, String autor) {
         super(titulo, conteudo);
         this.autor = autor;
+    }
+
+    @Override
+    public Relatorio clone() {
+        Relatorio clone = (Relatorio) super.clone();
+        clone.autor = this.autor;
+        return clone;
     }
 
     public String getAutor() {

@@ -1,4 +1,5 @@
-package Personagem;
+package PersonagemExemploPrototype;
+
 public abstract class Personagem implements Cloneable {
     protected String nome;
     protected int nivel;
@@ -14,12 +15,12 @@ public abstract class Personagem implements Cloneable {
         this.defesa = defesa;
     }
 
+    @Override
     public Personagem clone() {
         try {
             return (Personagem) super.clone();
         } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Erro ao clonar personagem", e);
         }
     }
 

@@ -1,9 +1,18 @@
+package DocumentoExemploPrototype;
+
 public class Contrato extends Documento {
     private String nomeCliente;
 
     public Contrato(String titulo, String conteudo, String nomeCliente) {
         super(titulo, conteudo);
         this.nomeCliente = nomeCliente;
+    }
+
+    @Override
+    public Contrato clone() {
+        Contrato clone = (Contrato) super.clone();
+        clone.nomeCliente = this.nomeCliente;
+        return clone;
     }
 
     public String getNomeCliente() {

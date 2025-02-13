@@ -1,3 +1,5 @@
+package DocumentoExemploPrototype;
+
 public abstract class Documento implements Cloneable {
     private String titulo;
     private String conteudo;

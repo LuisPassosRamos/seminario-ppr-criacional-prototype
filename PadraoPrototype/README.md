@@ -40,7 +40,7 @@ Gerenciamento eficiente de estados diferentes: Quando uma classe pode assumir ap
 
 ```mermaid
 ---
-title: Sistema de Documentos
+title: Sistema de Documentos (Prototype)
 ---
 classDiagram
     Documento <|-- Relatorio
@@ -53,16 +53,16 @@ classDiagram
     }
     class Relatorio {
         +String autor
+        +clone() Documento
         +exibirDetalhes() void
     }
-    note for Relatorio "Relatórios personalizados como Relatório Financeiro"
+    note for Relatorio "Clone personalizado (ex: Relatório Financeiro)"
     class Contrato {
         +String nomeCliente
+        +clone() Documento
         +exibirDetalhes() void
     }
-    note for Contrato "Contratos específicos como Compra e Venda"
-
-
+    note for Contrato "Clone específico (ex: Contrato de Compra e Venda)"
 ```
 ## Participantes 
 
@@ -73,7 +73,7 @@ classDiagram
 ## Outro Exemplo
 ```mermaid
 ---
-title: Criação de Personagens
+title: Criação de Personagens (Prototype) com Clonagem
 ---
 classDiagram
     Personagem <|-- Guerreiro
@@ -87,35 +87,101 @@ classDiagram
         +clone() Personagem
         +exibirDetalhes() void
     }
+    note for Personagem "Classe base para todos os personagens"
+
     class Guerreiro {
-        +int força
+        +int forca
         +int armadura
+        +clone() Guerreiro
         +exibirDetalhes() void
+        +setForca(int) void
+        +setArmadura(int) void
     }
+    note for Guerreiro "Personagem com alta defesa e força física"
+
+    Guerreiro <|-- Guerreiro1
+    Guerreiro1 <|-- Guerreiro2
+    class Guerreiro1 {
+        +nome: "Thor"
+        +nivel: 10
+        +vida: 200
+        +ataque: 50
+        +defesa: 40
+        +forca: 80
+        +armadura: 100
+    }
+    class Guerreiro2 {
+        +nome: "Thor"
+        +nivel: 10
+        +vida: 200
+        +ataque: 50
+        +defesa: 40
+        +forca: 200
+        +armadura: 200
+    }
+    note for Guerreiro1 "Guerreiro original"
+    note for Guerreiro2 "Clone melhorado (força e armadura aumentadas)"
+
     class Mago {
         +int mana
         +int poderMagico
+        +clone() Mago
         +exibirDetalhes() void
+        +setMana(int) void
+        +setPoderMagico(int) void
     }
-    note for Guerreiro "Personagem com alta defesa e força física"
     note for Mago "Personagem com habilidades mágicas e alto poder de ataque"
+
+    Mago <|-- Mago1
+    Mago1 <|-- Mago2
+    class Mago1 {
+        +nome: "Merlin"
+        +nivel: 12
+        +vida: 100
+        +ataque: 40
+        +defesa: 30
+        +mana: 150
+        +poderMagico: 200
+    }
+    class Mago2 {
+        +nome: "Merlin"
+        +nivel: 12
+        +vida: 100
+        +ataque: 40
+        +defesa: 30
+        +mana: 300
+        +poderMagico: 500
+    }
+    note for Mago1 "Mago original"
+    note for Mago2 "Clone melhorado (mana e poder mágico aumentados)"
 ```
 ## Participantes
 
-- Personagem (abstrato): Define os atributos e métodos comuns para todos os personagens.
-- Guerreiro (clone): Representa um personagem do tipo Guerreiro, com atributos relacionados à força e defesa.
-- Mago (clone): Representa um personagem do tipo Mago, com atributos relacionados à mana e poder mágico.
+- Personagem (abstrato): Classe abstrata que define os atributos e métodos comuns para todos os personagens.
+- Guerreiro: Representa um personagem do tipo Guerreiro, com atributos relacionados à força física e defesa.
+- Guerreiro1: Representa o guerreiro original, com atributos iniciais, forca: 80, armadura: 100
+- Guerreiro2 (clone): Representa o clone do Guerreiro1, com atributos melhorados, forca: 200, armadura: 200
+- Mago: Representa um personagem do tipo Mago, com atributos relacionados à mana e habilidades mágicas.
+- Mago1: Representa o mago original, com atributos iniciais, mana: 150, poderMagico: 200
+- Mago2 (clone): Representa o clone do Mago1, com atributos melhorados, mana: 300, poderMagico: 500
+
+
+## Diferença entre Herança e Clone 
+- Herança: Define uma relação "é um" entre classes. A subclasse herda comportamentos e atributos da superclasse, mas o comportamento é fixo após a definição da classe.
+
+- Prototype: Define uma relação "copia de" entre objetos. Você cria novos objetos clonando um protótipo existente e personalizando conforme seja necessário, o que permite flexibilidade em tempo de execução.
 
 
 ## Consequências
 Prototype tem muitas das mesmas consequências que o Abstract Factory e Builder:
 - Oculta as classes de produtos concretos do cliente, reduzindo a quantidade de informações que ele precisa conhecer, permitindo que o cliente crie novos objetos a partir de protótipos existentes, sem precisar entender ou interagir diretamente com o código das classes concretas.
 
-### Diferença entre Herança e Clone 
-- aas
+##  Como linguagens que não são Orientadas a Objetos simulam herança utilizando o Padrão de Projeto Prototype
+- Em linguagens que não são orientadas a objetos, o Padrão Prototype pode ser usado para simular herança através da clonagem de objetos ou estruturas de dados. A ideia central é criar um "protótipo" (um objeto ou estrutura base) e, a partir dele, gerar cópias que podem ser personalizadas com atributos ou comportamentos específicos.
 
-###  Como linguagens que não são Orientadas a Objetos simulam herança utilizando o Padrão de Projeto Prototype
-- sdd
+- Por exemplo, em linguagens como JavaScript, Python ou até mesmo C, é possível usar dicionários, objetos literais, structs ou funções para criar um protótipo base. Esse protótipo é então clonado, e as cópias são modificadas para adicionar características únicas, simulando o conceito de herança.
+
+- Essa abordagem permite reutilizar e estender funcionalidades sem a necessidade de classes ou herança tradicional, sendo uma solução flexível e eficaz em linguagens que não possuem suporte nativo a orientação a objetos.
 
 ### Benefícios adicionais do Prototype:
 

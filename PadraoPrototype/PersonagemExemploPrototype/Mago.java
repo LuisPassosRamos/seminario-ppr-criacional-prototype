@@ -1,4 +1,4 @@
-package Personagem;
+package PersonagemExemploPrototype;
 
 public class Mago extends Personagem {
     private int mana;
@@ -8,6 +8,14 @@ public class Mago extends Personagem {
         super(nome, nivel, vida, ataque, defesa);
         this.mana = mana;
         this.poderMagico = poderMagico;
+    }
+
+    @Override
+    public Mago clone() {
+        Mago clone = (Mago) super.clone();
+        clone.mana = this.mana;
+        clone.poderMagico = this.poderMagico;
+        return clone;
     }
 
     @Override
