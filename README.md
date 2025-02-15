@@ -40,7 +40,7 @@ Gerenciamento eficiente de estados diferentes: Quando uma classe pode assumir ap
 
 ```mermaid
 ---
-title: Sistema de Documentos
+title: Sistema de Documentos (Prototype)
 ---
 classDiagram
     Documento <|-- Relatorio
@@ -53,16 +53,16 @@ classDiagram
     }
     class Relatorio {
         +String autor
+        +clone() Documento
         +exibirDetalhes() void
     }
-    note for Relatorio "Relatórios personalizados como Relatório Financeiro"
+    note for Relatorio "Clone personalizado (ex: Relatório Financeiro)"
     class Contrato {
         +String nomeCliente
+        +clone() Documento
         +exibirDetalhes() void
     }
-    note for Contrato "Contratos específicos como Compra e Venda"
-
-
+    note for Contrato "Clone específico (ex: Contrato de Compra e Venda)"
 ```
 ## Participantes 
 
@@ -73,7 +73,7 @@ classDiagram
 ## Outro Exemplo
 ```mermaid
 ---
-title: Criação de Personagens
+title: Criação de Personagens (Prototype) com Clonagem
 ---
 classDiagram
     Personagem <|-- Guerreiro
@@ -87,30 +87,156 @@ classDiagram
         +clone() Personagem
         +exibirDetalhes() void
     }
+    note for Personagem "Classe base para todos os personagens"
+
     class Guerreiro {
-        +int força
+        +int forca
         +int armadura
+        +clone() Guerreiro
         +exibirDetalhes() void
+        +setForca(int) void
+        +setArmadura(int) void
     }
+    note for Guerreiro "Personagem com alta defesa e força física"
+
+    Guerreiro <|-- Guerreiro1
+    Guerreiro1 <|-- Guerreiro2
+    class Guerreiro1 {
+        +nome: "Thor"
+        +nivel: 10
+        +vida: 200
+        +ataque: 50
+        +defesa: 40
+        +forca: 80
+        +armadura: 100
+    }
+    class Guerreiro2 {
+        +nome: "Thor"
+        +nivel: 10
+        +vida: 200
+        +ataque: 50
+        +defesa: 40
+        +forca: 200
+        +armadura: 200
+    }
+    note for Guerreiro1 "Guerreiro original"
+    note for Guerreiro2 "Clone melhorado (força e armadura aumentadas)"
+
     class Mago {
         +int mana
         +int poderMagico
+        +clone() Mago
         +exibirDetalhes() void
+        +setMana(int) void
+        +setPoderMagico(int) void
     }
-    note for Guerreiro "Personagem com alta defesa e força física"
     note for Mago "Personagem com habilidades mágicas e alto poder de ataque"
+
+    Mago <|-- Mago1
+    Mago1 <|-- Mago2
+    class Mago1 {
+        +nome: "Merlin"
+        +nivel: 12
+        +vida: 100
+        +ataque: 40
+        +defesa: 30
+        +mana: 150
+        +poderMagico: 200
+    }
+    class Mago2 {
+        +nome: "Merlin"
+        +nivel: 12
+        +vida: 100
+        +ataque: 40
+        +defesa: 30
+        +mana: 300
+        +poderMagico: 500
+    }
+    note for Mago1 "Mago original"
+    note for Mago2 "Clone melhorado (mana e poder mágico aumentados)"
 ```
 ## Participantes
 
-- Personagem (abstrato): Define os atributos e métodos comuns para todos os personagens.
-- Guerreiro (clone): Representa um personagem do tipo Guerreiro, com atributos relacionados à força e defesa.
-- Mago (clone): Representa um personagem do tipo Mago, com atributos relacionados à mana e poder mágico.
+- Personagem (abstrato): Classe abstrata que define os atributos e métodos comuns para todos os personagens.
+- Guerreiro: Representa um personagem do tipo Guerreiro, com atributos relacionados à força física e defesa.
+- Guerreiro1: Representa o guerreiro original, com atributos iniciais, forca: 80, armadura: 100
+- Guerreiro2 (clone): Representa o clone do Guerreiro1, com atributos melhorados, forca: 200, armadura: 200
+- Mago: Representa um personagem do tipo Mago, com atributos relacionados à mana e habilidades mágicas.
+- Mago1: Representa o mago original, com atributos iniciais, mana: 150, poderMagico: 200
+- Mago2 (clone): Representa o clone do Mago1, com atributos melhorados, mana: 300, poderMagico: 500
+
+
+## Diferença entre Herança e Clone 
+- Herança: Define uma relação "é um" entre classes. A subclasse herda comportamentos e atributos da superclasse, mas o comportamento é fixo após a definição da classe.
+
+- Prototype: Define uma relação "copia de" entre objetos. Você cria novos objetos clonando um protótipo existente e personalizando conforme seja necessário, o que permite flexibilidade em tempo de execução, apenas utilizando o método clone.
 
 
 ## Consequências
 Prototype tem muitas das mesmas consequências que o Abstract Factory e Builder:
 - Oculta as classes de produtos concretos do cliente, reduzindo a quantidade de informações que ele precisa conhecer, permitindo que o cliente crie novos objetos a partir de protótipos existentes, sem precisar entender ou interagir diretamente com o código das classes concretas.
-  
+
+##  Como linguagens que não são Orientadas a Objetos simulam herança utilizando o Padrão de Projeto Prototype
+- Em linguagens que não são orientadas a objetos, o Padrão Prototype pode ser usado para simular herança através da clonagem de objetos ou estruturas de dados. A ideia central é criar um "protótipo" (um objeto ou estrutura base) e, a partir dele, gerar cópias que podem ser personalizadas com atributos ou comportamentos específicos.
+
+- Por exemplo, em linguagens como JavaScript, Python ou até mesmo C, é possível usar dicionários, objetos literais, structs ou funções para criar um protótipo base. Esse protótipo é então clonado, e as cópias são modificadas para adicionar características únicas, simulando o conceito de herança.
+
+```javascript
+function Personagem(nome, nivel) {
+    this.nome = nome;
+    this.nivel = nivel;
+}
+
+Personagem.prototype.atacar = function () {
+    return `${this.nome} ataca com um golpe básico!`;
+};
+
+function Guerreiro(nome, nivel, arma) {
+    Personagem.call(this, nome, nivel);
+    this.arma = arma;
+}
+
+Guerreiro.prototype = Object.create(Personagem.prototype);
+Guerreiro.prototype.constructor = Guerreiro;
+
+Guerreiro.prototype.atacar = function () {
+    return `${this.nome} ataca com ${this.arma}!`;
+};
+
+function Mago(nome, nivel, elemento) {
+    Personagem.call(this, nome, nivel);
+    this.elemento = elemento;
+}
+
+Mago.prototype = Object.create(Personagem.prototype);
+Mago.prototype.constructor = Mago;
+
+Mago.prototype.atacar = function () {
+    return `${this.nome} lança um feitiço de ${this.elemento}!`;
+};
+
+function testarHeranca() {
+    const personagemBase = new Personagem("Aventureiro", 1);
+    const guerreiro = new Guerreiro("Thor", 5, "Martelo");
+    const mago = new Mago("Merlin", 10, "fogo");
+
+    const resultado = `
+        <p>${personagemBase.atacar()}</p>
+        <p>${guerreiro.atacar()}</p>
+        <p>${mago.atacar()}</p>
+    `;
+
+    document.getElementById("resultado").innerHTML = resultado;
+}
+```
+#### Explicação:
+
+- A Superclasse Personagem, possui as propriedades nome e nivel, possui um método atacar() compartilhado pelo prototype.
+
+- Subclasse Guerreiro e Subclasse mago usam Personagem.call(this, nome, nivel); para herdar as propriedades e define sua própria propriedade arma e feitiço, usa Object.create(Personagem.prototype) para herdar métodos e sobrescreve o método atacar() com um comportamento específico.
+
+- Essa abordagem permite reutilizar e estender funcionalidades sem a necessidade de classes ou herança tradicional, sendo uma solução flexível e eficaz em linguagens que não possuem suporte nativo a orientação a objetos.
+
 ### Benefícios adicionais do Prototype:
 
 1. Modificação dinâmica de protótipos: O padrão permite modificar ou estender protótipos de objetos durante a execução do programa.
@@ -152,95 +278,237 @@ Copia o objeto e todos os objetos aos quais ele se refere, criando novas instân
 ## Exemplo de código 
 ### 1. Criando classe abstrata, que servirá como protótipo
 ```java
- public abstract class Documento implements Cloneable {
-    private String titulo;
-    private String conteudo;
+package PersonagemExemploPrototype;
 
-    public Documento(String titulo, String conteudo) {
-        this.titulo = titulo;
-        this.conteudo = conteudo;
-    }
+public abstract class Personagem implements Cloneable {
+    protected String nome;
+    protected int nivel;
+    protected int vida;
+    protected int ataque;
+    protected int defesa;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-}
-
-public interface Phone {
-    void getDetails();
-}
-
-public class AndroidPhone implements Phone {
-    public void getDetails() {
-        System.out.println("Telefone Android criado.");
-    }
-}
-
-public class IPhone implements Phone {
-    public void getDetails() {
-        System.out.println("iPhone criado.");
-    }
-}
-
-public String getConteudo() {
-        return conteudo;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
+    public Personagem(String nome, int nivel, int vida, int ataque, int defesa) {
+        this.nome = nome;
+        this.nivel = nivel;
+        this.vida = vida;
+        this.ataque = ataque;
+        this.defesa = defesa;
     }
 
     @Override
-    public Documento clone() {
+    public Personagem clone() {
         try {
-            return (Documento) super.clone();
+            return (Personagem) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Erro ao clonar documento!", e);
+            throw new RuntimeException("Erro ao clonar personagem", e);
         }
     }
 
-    public abstract void exibirDetalhes();
+    public void exibirDetalhes() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Nível: " + nivel);
+        System.out.println("Vida: " + vida);
+        System.out.println("Ataque: " + ataque);
+        System.out.println("Defesa: " + defesa);
+    }
 }
- 
 ```
-**Explicação: A classe Documento é abstrata e implementa a interface Cloneable, permitindo que objetos derivados sejam clonados. Ela possui dois atributos, titulo e conteudo, com métodos getters e setters para acesso e modificação. O método clone() é sobrescrito para criar uma cópia do documento utilizando o método super.clone(), realizando uma clonagem superficial. Além disso, a classe contém um método abstrato exibirDetalhes(), que deve ser implementado pelas subclasses para exibir informações específicas do documento. Essa estrutura facilita a criação de diferentes tipos de documentos com base em um modelo comum.**
+**Explicação: A classe Personagem é abstrata e implementa a interface Cloneable, permitindo que objetos derivados sejam clonados. Ela possui atributos genéricos que todo personagem deve ter, com métodos getters e setters para acesso e modificação. O método clone() é sobrescrito para criar uma cópia utilizando o método super.clone(), realizando uma clonagem superficial. Além disso, a classe contém um método abstrato exibirDetalhes(), que deve ser implementado pelas subclasses para exibir informações específicas de acordo com o personagem. Essa estrutura facilita a criação de diferentes tipos de personagens com base em um modelo comum.**
 
-### 2. Criando a classe Contrato, que é uma cópia da classe Documento
+### 2. Criando o Guerreiro
 ```java
-public class Contrato extends Documento {
-    private String nomeCliente;
+package PersonagemExemploPrototype;
 
-    public Contrato(String titulo, String conteudo, String nomeCliente) {
-        super(titulo, conteudo);
-        this.nomeCliente = nomeCliente;
+public class Guerreiro extends Personagem {
+    private int forca;
+    private int armadura;
+
+    public Guerreiro(String nome, int nivel, int vida, int ataque, int defesa, int forca, int armadura) {
+        super(nome, nivel, vida, ataque, defesa);
+        this.forca = forca;
+        this.armadura = armadura;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    @Override
+    public Guerreiro clone() {
+        Guerreiro clone = (Guerreiro) super.clone();
+        clone.forca = this.forca;
+        clone.armadura = this.armadura;
+        return clone;
     }
 
     @Override
     public void exibirDetalhes() {
-        System.out.println("Contrato:");
-        System.out.println("Título: " + getTitulo());
-        System.out.println("Conteúdo: " + getConteudo());
-        System.out.println("Cliente: " + nomeCliente);
-        System.out.println();
+        super.exibirDetalhes();
+        System.out.println("Força: " + forca);
+        System.out.println("Armadura: " + armadura);
+    }
+
+    public int getForca() {
+        return forca;
+    }
+
+    public void setForca(int forca) {
+        this.forca = forca;
+    }
+
+    public int getArmadura() {
+        return armadura;
+    }
+
+    public void setArmadura(int armadura) {
+        this.armadura = armadura;
     }
 }
 ```
-**Explicação: A classe Contrato estende a classe Documento e adiciona um atributo específico, nomeCliente, que representa o nome do cliente associado ao contrato. O construtor da classe Contrato chama o construtor da classe pai Documento para inicializar os atributos titulo e conteudo, além de inicializar nomeCliente. Os métodos getNomeCliente() e setNomeCliente() permitem acessar e modificar o nome do cliente. O método exibirDetalhes() é uma implementação do método abstrato da classe pai, exibindo as informações completas do contrato, incluindo o título, o conteúdo e o nome do cliente, proporcionando uma exibição dos detalhes do contrato.**
 
-### 3. Conclusão
-O código define uma estrutura de documentos utilizando o padrão Prototype. A classe Documento é abstrata e implementa a interface Cloneable, permitindo a clonagem de objetos. Ela possui atributos básicos como titulo e conteudo, com métodos para acessá-los e modificá-los, e um método abstrato exibirDetalhes() que deve ser implementado nas subclasses. A classe Contrato estende Documento, adicionando o atributo nomeCliente e implementando o método exibirDetalhes() para mostrar informações específicas do contrato. Essa estrutura permite a criação de documentos clonáveis e personalizados, como contratos, facilitando a reutilização e modificação de objetos sem a necessidade de reescrever todo o conteúdo.
+### 3. Testando
+```java
+package PersonagemExemploPrototype;
+
+public class Main {
+    public static void main(String[] args) {
+        Guerreiro guerreiro1 = new Guerreiro("Thor", 10, 200, 50, 40, 80, 100);
+        Mago mago1 = new Mago("Merlin", 12, 100, 40, 30, 150, 200);
+
+        Guerreiro guerreiro2 = guerreiro1.clone();
+        Guerreiro guerreiro3 = guerreiro2.clone();
+        guerreiro3.setArmadura(200);
+        guerreiro3.setForca(200);
+
+        Mago mago2 = mago1.clone();
+        Mago mago3 = mago2.clone();
+        mago3.setMana(300);
+        mago3.setPoderMagico(500);
+
+        System.out.println("Detalhes do Guerreiro 1:");
+        guerreiro1.exibirDetalhes();
+        System.out.println();
+
+        System.out.println("Detalhes do Guerreiro 2 (Clone):");
+        guerreiro2.exibirDetalhes();
+        System.out.println();
+
+        System.out.println("Detalhes do Guerreiro 3 (Clone do clone melhorado):");
+        guerreiro3.exibirDetalhes();
+        System.out.println();
+
+        System.out.println("Detalhes do Mago 1:");
+        mago1.exibirDetalhes();
+        System.out.println();
+
+        System.out.println("Detalhes do Mago 2 (Clone):");
+        mago2.exibirDetalhes();
+        System.out.println();
+
+        System.out.println("Detalhes do Mago 3 (Clone do clone melhorado):");
+        mago3.exibirDetalhes();
+        System.out.println();
+    }
+}
+
+```
+**Explicação: No trecho      
+Guerreiro guerreiro3 = guerreiro2.clone();
+guerreiro3.setArmadura(200);
+guerreiro3.setForca(200); podemos ver a utilização do método clone, clonando o guerreiro2 e criando um guerreiro3, e deixando o guerreiro mais forte utilizando set, ou seja, personalizando o novo guerreiro que foi instânciado e personalizando conforme necessário**
+
+### 4. Conclusão
+O código define uma estrutura de Personagem utilizando o padrão Prototype. A classe Personagem é abstrata e implementa a interface Cloneable, permitindo a clonagem de objetos. Ela possui atributos básicos, com métodos para acessá-los e modificá-los, e um método abstrato exibirDetalhes() que deve ser implementado nas subclasses. A classe Guerreiro estende Personagem (Herança), adicionando o atributo força e armadura e implementando o método exibirDetalhes() para mostrar informações específicas do Guerreiro. Essa estrutura permite a criação de novos guerreiros e personagens clonáveis e personalizados, facilitando a reutilização e modificação de objetos sem a necessidade de reescrever todo o conteúdo.
+
+
+### Deep clone 
+
+- Cópia Profunda: Quando a cópia é criada, o objeto Endereco não é compartilhado entre o objeto original e a cópia. Ou seja, alterar o endereco da cópia não afeta o endereco do objeto original.
+
+```java
+class Endereco implements Cloneable {
+    String rua;
+    String cidade;
+
+    public Endereco(String rua, String cidade) {
+        this.rua = rua;
+        this.cidade = cidade;
+    }
+
+    @Override
+    public Endereco clone() {
+        try {
+            return (Endereco) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{rua='" + rua + "', cidade='" + cidade + "'}";
+    }
+}
+
+```
+- A classe Endereco implementa Cloneable e sobrescreve o método clone() para realizar a cópia do objeto.
+
+```java
+class Pessoa implements Cloneable {
+    String nome;
+    int idade;
+    Endereco endereco;
+
+    public Pessoa(String nome, int idade, Endereco endereco) {
+        this.nome = nome;
+        this.idade = idade;
+        this.endereco = endereco;
+    }
+
+    @Override
+    public Pessoa clone() {
+        try {
+            Pessoa copia = (Pessoa) super.clone();
+            copia.endereco = this.endereco.clone();
+            return copia;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{nome='" + nome + "', idade=" + idade + ", endereco=" + endereco + "}";
+    }
+}
+
+```
+- A classe Pessoa também implementa a interface Cloneable e sobrescreve o método clone(). O método clone() de Pessoa garante que o objeto Endereco interno seja copiado profundamente.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Endereco enderecoOriginal = new Endereco("Rua Enersto Melo", "SAJ");
+        Pessoa pessoaOriginal = new Pessoa("João", 30, enderecoOriginal);
+
+        Pessoa pessoaCopia = pessoaOriginal.clone();
+
+        pessoaCopia.nome = "Maria";
+        pessoaCopia.endereco.rua = "Rua Ipe Rosa";
+        pessoaCopia.idade = 25;
+
+        System.out.println("Pessoa Original: " + pessoaOriginal);
+        System.out.println("Pessoa Cópia: " + pessoaCopia);
+    }
+}
+
+```
+#### Explicação:
+
+Resultado da execução do main:
+
+Pessoa Original: 
+Pessoa{nome='João', idade=30, endereco=Endereco{rua='Rua Enersto Melo', cidade='SAJ'}}
+
+Pessoa Cópia: 
+Pessoa{nome='Maria', idade=25, endereco=Endereco{rua='Rua Ipe Rosa', cidade='SAJ'}}
+
 
 
 
