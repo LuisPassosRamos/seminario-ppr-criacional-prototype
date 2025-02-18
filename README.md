@@ -559,6 +559,100 @@ No desenvolvimento de produtos digitais, impressoras 3D utilizam o conceito de p
 ## Padrões Relacionados 
 Prototype e Abstract Factory têm em comum o objetivo de **abstrair a criação de objetos**, permitindo ao cliente criar instâncias sem conhecer detalhes de implementação. O Prototype cria objetos clonando um protótipo existente, enquanto o Abstract Factory cria famílias de objetos relacionados. Eles podem ser usados em conjunto, com o Abstract Factory coordenando e armazenando a criação de produtos (protótipos) e o Prototype permitindo clonar e personalizar esses objetos conforme necessário.
 
+## Outro exemplo
+
+### Participantes
+
+Prototype → Formulario (Define a interface para clonagem)
+
+ConcretePrototype → FormularioPadrao (Implementa o clone do formulário)
+
+Client → SistemaCadastro (Solicita clones do formulário)
+
+### Motivação
+
+Imagine um sistema de cadastramento onde várias pessoas precisam preencher o mesmo formulário padrão (ex: ficha de inscrição). Criar um novo formulário do zero toda vez seria ineficiente.
+Com o Prototype, podemos criar um modelo (protótipo) do formulário já preenchido com os campos padrão e simplesmente cloná-lo para cada novo usuário, permitindo apenas a personalização dos dados individuais.
+Isso torna o processo mais rápido, flexível e reutilizável.
+
+### UML 
+
+```plantuml
+@startuml
+
+interface Prototype {
+    + clonar(): Formulario
+}
+
+class FormularioPadrao implements Prototype {
+    - String nome
+    - String email
+    - String endereco
+    + clonar(): FormularioPadrao
+}
+
+class SistemaCadastro {
+    + gerarNovoFormulario(): FormularioPadrao
+}
+
+Prototype <|.. FormularioPadrao
+SistemaCadastro --> Prototype : usa clonar()
+
+@enduml
+```
+
+### Código Java
+
+```java
+// 1. Interface Prototype
+interface Formulario extends Cloneable {
+    Formulario clonar();
+}
+
+// 2. Implementação concreta do Prototype
+class FormularioPadrao implements Formulario {
+    private String nome;
+    private String email;
+    private String endereco;
+
+    public FormularioPadrao(String nome, String email, String endereco) {
+        this.nome = nome;
+        this.email = email;
+        this.endereco = endereco;
+    }
+
+    // Implementação do método de clonagem
+    @Override
+    public Formulario clonar() {
+        return new FormularioPadrao(this.nome, this.email, this.endereco);
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void mostrar() {
+        System.out.println("Nome: " + nome + ", Email: " + email + ", Endereço: " + endereco);
+    }
+}
+
+// 3. Cliente que usa o Prototype
+public class SistemaCadastro {
+    public static void main(String[] args) {
+        // Criando um formulário modelo
+        FormularioPadrao prototipo = new FormularioPadrao("Nome Padrão", "email@exemplo.com", "Rua Exemplo");
+
+        // Clonando para um novo usuário
+        FormularioPadrao novoFormulario = (FormularioPadrao) prototipo.clonar();
+        novoFormulario.setNome("Jabes Cajazeira"); // Personalizando os dados
+
+        // Exibindo os formulários
+        prototipo.mostrar();  // Mantém os valores padrão
+        novoFormulario.mostrar();  // Exibe os dados personalizados
+    }
+}
+```
+
 ## Referências 
 
 GAMMA, Erich; HELM, Richard; JOHNSON, Ralph; VLISSIDES, John. Padrões de Projetos: Soluções Reutilizáveis de Software Orientados a Objetos. Trad. Luiz A. Meirelles Salgado; Fabiano Borges Paulo. 1. ed. Porto Alegre: Bookman, 2000.
